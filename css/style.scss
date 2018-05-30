@@ -529,13 +529,14 @@ a:hover, a:active {
 .share{
 	margin: 0px 30px;
 	display: inline-flex;
+	text-align: right;
 }
 .evernote{
 	width: 32px;
 	height: 32px;
 	border-radius: 300px;
 	background-color: #3E3E3E;
-	margin-right:5px;
+	margin-right:10px;
 		a{
 			color: #fff;
 			padding: 11px;
@@ -551,7 +552,7 @@ a:hover, a:active {
 	height: 32px;
 	border-radius: 300px;
 	background-color: #ED6243;
-	margin-right:5px;
+	margin-right:10px;
 
  	a{
 	color: #fff;
@@ -566,7 +567,7 @@ a:hover, a:active {
 	height: 32px;
 	border-radius: 300px;
 	background-color: #59C0FD;
-	margin-right:5px;
+	margin-right:10px;
 
 		a{
 			color: #fff;
@@ -779,7 +780,7 @@ a.btn {
 		display: none;
 	}
 	.share{
-		display: grid;
+		display: inline-flex;
 	}
 
 }

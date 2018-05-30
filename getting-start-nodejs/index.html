@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="hankewins,me@hankewins.com"><title>Node学习历险记（1）— 扬帆启航 · Hankewins's Blog</title><meta name="description" content="背景：毕业三年有余，栖息于一线城市，先后从事web前端开发、移动前端开发等相关工作，一次偶然的机会{2012年}面试了迅雷下载-前端开发工程师一职（没通过），开始知道Node的重要性，初步的去了解了Node的发展史以及应用场景，在参加腾讯H5沙龙、公司级培训、内部培训等相关活动时经常能听到Node字"><meta name="keywords" content="Web,HTML5,CSS3,Nodejs,git,php"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/blog/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/blog/css/style.css"><link rel="stylesheet" href="/blog/css/blog_basic.css"><link rel="stylesheet" href="/blog/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/blog/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">Hankewins's Blog</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="http://weibo.com/hankewins"><i class="fa fa-weibo"></i></a></li><li><a href="http://facebook.com/hankewins"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/hankewins"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/blog/archives">归档</a></li><li><a href="/blog/about">关于</a></li><li><a href="/blog/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/blog/images/avatar.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Node学习历险记（1）— 扬帆启航</a></h3></div><div class="post-content"><p>背景：毕业三年有余，栖息于一线城市，先后从事web前端开发、移动前端开发等相关工作，一次偶然的机会{2012年}面试了迅雷下载-前端开发工程师一职（没通过），开始知道Node的重要性，初步的去了解了Node的发展史以及应用场景，在参加腾讯H5沙龙、公司级培训、内部培训等相关活动时经常能听到Node字眼，似乎Node与H5（移动开发）一样爆发，是前端的福音。今年{2013年}借着项目以及学习计划开启Node学习之旅。</p>
+<p>Node学习历险记采用游记的方式记录学习过程，由于文字功底弱，难免存在语句不通顺，标点错误等等一系列的语病，还望轻拍。^__^</p>
+<p>##快速开始</p>
+<p>###windows篇</p>
+<p>查看系统是32bit OR 64bit，DOS命令行下输入 wmic os get osarchitecture</p>
+<p>1.下载Node.js官方Windows可执行程序：</p>
+<pre><code>http://nodejs.org/download/
+</code></pre><p>2.下载MongoDB官方Windows可执行程序：</p>
+<pre><code>http://www.mongodb.org/downloads
+</code></pre><p>3.安装Node和MongoDB</p>
+<pre><code>a.安装完成后，打开windows命令行（win+r）,输入cmd进行命令行模式
+b.查看Node版本 node -v // 安装成功 v0.10.7
+c.查看MongoDB版本 mongo --version // 安装成功 MongoDB shell version: 2.4.3 
+d.添加MongoDB系统变量 //切换到其他盘符查看显示 mongo --version
+
+注：因为Node安装时默认会添加系统变量所以可全局访问，而MongoDB需手动添加系统变量。
+</code></pre><p>4.MongoDB相关配置</p>
+<ul>
+<li>详细的官方安装与配置（英文） <a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/" target="_blank" rel="noopener">传送门</a></li>
+<li>简单直白的配置方式(DOS下输入命令测试)</li>
+</ul>
+<p><strong>1.了解mongo 和 mongod 两个命令的作用</strong>  </p>
+<pre><code>mongo:mongodb客户端命令，用于连接MongoDB服务器
+mongod:mongodb服务器命令，用于启动和配置MongoDB服务器
+</code></pre><p><strong>2.开始配置和启动MongoDB</strong></p>
+<pre><code>a.在DOS下输入 mongod 回车，可以看到提示信息如下：
+
+D:\&gt;mongod
+mongod --help for help and startup options
+Sun May 26 15:13:52.230
+Sun May 26 15:13:52.243 warning: 32-bit servers don&apos;t have journaling enabled by
+ default. Please use --journal if you want durability.
+Sun May 26 15:13:52.244
+Sun May 26 15:13:52.422 [initandlisten] MongoDB starting : pid=5408 port=27017 d
+bpath=\data\db\ 32-bit host=yihaner
+Sun May 26 15:13:52.423 [initandlisten]
+Sun May 26 15:13:52.423 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary
+.
+Sun May 26 15:13:52.424 [initandlisten] **       32 bit builds are limited to le
+ss than 2GB of data (or less with --journal).
+Sun May 26 15:13:52.424 [initandlisten] **       Note that journaling defaults t
+o off for 32 bit and is currently off.
+Sun May 26 15:13:52.424 [initandlisten] **       See http://dochub.mongodb.org/c
+ore/32bit
+Sun May 26 15:13:52.425 [initandlisten]
+Sun May 26 15:13:52.425 [initandlisten] db version v2.4.3
+Sun May 26 15:13:52.426 [initandlisten] git version: fe1743177a5ea03e91e0052fb5e
+2cb2945f6d95f
+Sun May 26 15:13:52.427 [initandlisten] build info: windows sys.getwindowsversio
+n(major=6, minor=0, build=6002, platform=2, service_pack=&apos;Service Pack 2&apos;) BOOST
+_LIB_VERSION=1_49
+Sun May 26 15:13:52.427 [initandlisten] allocator: system
+Sun May 26 15:13:52.428 [initandlisten] options: {}
+Sun May 26 15:13:52.456 [initandlisten] exception in initAndListen: 10296
+*********************************************************************
+ ERROR: dbpath (\data\db\) does not exist.
+ Create this directory or give existing directory in --dbpath.
+ See http://dochub.mongodb.org/core/startingandstoppingmongo
+*********************************************************************
+, terminating
+Sun May 26 15:13:52.457 dbexit:
+Sun May 26 15:13:52.458 [initandlisten] shutdown: going to close listening socke
+ts...
+Sun May 26 15:13:52.458 [initandlisten] shutdown: going to flush diaglog...
+Sun May 26 15:13:52.459 [initandlisten] shutdown: going to close sockets...
+Sun May 26 15:13:52.459 [initandlisten] shutdown: waiting for fs preallocator...
+
+Sun May 26 15:13:52.460 [initandlisten] shutdown: closing all files...
+Sun May 26 15:13:52.460 [initandlisten] closeAllFiles() finished
+Sun May 26 15:13:52.460 dbexit: really exiting now
+很明显错误显示dbpath(\data\db\)不存在（默认文件路径是C:\data\db），这里指定
+db目录为E:\mongodb\data\db
+log目录为E:\mongodb\log。
+
+b.指定dbpath来启动MongoDB（在DOS下输入 mongod --dbpath E:\mongodb\data\db）
+
+Sun May 26 15:26:25.423 [initandlisten] allocator: system
+Sun May 26 15:26:25.423 [initandlisten] options: { dbpath: &quot;E:\mongodb\data\db&quot;
+}
+Sun May 26 15:26:25.460 [websvr] admin web console waiting for connections on po
+rt 28017
+Sun May 26 15:26:25.460 [initandlisten] waiting for connections on port 27017
+可以看到MongoDB已启动，等待客户端的连接。
+我们发现这种启动方式每次最少要打开两个CMD窗口才可以进行操作，是否有更好的方法呢？
+如果MongoDB能够系统启动就好了，OK，可以把MongoDB添加到windows服务中。
+
+c.方法如下：
+
+1.在E:\mongodb\下创建mongod.conf配置文件，写入一下内容：
+
+    logpath=E:\mongodb\log\mongo.log //用于存放日志文件
+    dbpath=E:\mongodb\data\db   //用于存放数据库文件
+
+2.执行以下命令 mongod --config E:\mongodb\mongod.conf --install
+
+3.通过DOS命令行操作Mongodb
+
+    net start MongoDB //启动服务
+    net stop MongoDB //停止服务
+
+4.在命令行下执行 mongo 连接数据库， 连接成功后输入： show dbs;
+    admin   0.0625GB
+    local   0.03125GB
+    test    0.0625GB
+
+相关类似的信息说明配置成功，客户端连接MongoDB成功，现在就可以直接操作数据库啦。
+</code></pre><p>至此，Node学习历险记 -《快速开始》篇到此告一段落，如有表述不正确的地方还望指正，我将及时更正。</p>
+<p>欢迎加入交流群：322794303</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2013-05-20</span><i class="fa fa-tag"></i><a class="tag" href="/blog/categories/前端开发/" title="前端开发">前端开发 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://hankewins.com/blog/getting-start-nodejs/,Hankewins's Blog,Node学习历险记（1）— 扬帆启航,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/blog/how-to-use-node-middleware-nodemailer/" title="nodemailer使用过程中发现的一些问题">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/blog/how-to-install-sublime-text-2/" title="前端开发环境（ST2）搭建过程">下一篇</a></li></ul></div></div></div></div></div><script src="/blog/js/jquery.js"></script><script src="/blog/js/jquery-migrate-1.2.1.min.js"></script><script src="/blog/js/jquery.appear.js"></script></body></html>

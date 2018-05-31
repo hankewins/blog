@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="hankewins,me@hankewins.com"><title>前端开发环境（ST2）搭建过程 · Hankewins's Blog</title><meta name="description" content="Sublime Text 2（简称：ST2）是一个实用又好用的编辑器，以其体积小、响应快、功能齐全、操作便捷、插件丰富、跨平台等特性，被前端人员的推崇为神器。
+为了促进前端（团队）统一开发环境的正确搭建，现梳理一下我们产品业务中用到的一些插件，以便大家能快速搭建好ST2开发环境。
+注：ST3版本硬性"><meta name="keywords" content="Web,HTML5,CSS3,Nodejs,git,php"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/blog/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/blog/css/style.css"><link rel="stylesheet" href="/blog/css/blog_basic.css"><link rel="stylesheet" href="/blog/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/blog/images/avatar.jpg" style="width:127px;"><h3 title=""><a href="/">Hankewins's Blog</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="http://weibo.com/hankewins"><i class="fa fa-weibo"></i></a></li><li><a href="http://facebook.com/hankewins"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/hankewins"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/blog/archives">归档</a></li><li><a href="/blog/about">关于</a></li><li><a href="/blog/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/blog/images/avatar.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>前端开发环境（ST2）搭建过程</a></h3></div><div class="post-content"><p><strong>Sublime Text 2（简称：ST2）</strong>是一个实用又好用的编辑器，以其体积小、响应快、功能齐全、操作便捷、插件丰富、跨平台等特性，被前端人员的推崇为神器。</p>
+<p>为了促进前端（团队）统一开发环境的正确搭建，现梳理一下我们产品业务中用到的一些插件，以便大家能快速搭建好ST2开发环境。</p>
+<p><code>注：ST3版本硬性要求比较高，且与ST2兼容的插件比较少，帮暂不推荐升级。</code></p>
+<p>###准备工作</p>
+<p>下载对应版本的ST2:<a href="http://www.sublimetext.com/2" target="_blank" rel="noopener">http://www.sublimetext.com/2</a></p>
+<p>###开始安装</p>
+<p>在windows环境下双击下载的ST2可执行文件即可安装。</p>
+<p><a href="http://pan.baidu.com/share/link?shareid=2246429840&amp;uk=3945756521#dir/path=%2F%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3%E4%B8%AD%E5%BF%83%2F%E5%89%8D%E7%AB%AF%E7%BB%9F%E4%B8%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83" target="_blank" rel="noopener">ST2免费注册码下载</a></p>
+<p>在linux环境下安装如下：  </p>
+<p>1.解压并修改ST2文件名</p>
+<pre><code>tar -xvf sublime_text_2.0.2.tar.bz2  
+mv Sublime\ Text\ 2/ sublime_text_2
+</code></pre><p>2.移动到合适的位置，这里选择<code>/usr/lib/</code></p>
+<pre><code>sudo mv sublime_text_2 /usr/lib/
+</code></pre><p>3.命令行（Terminal）下启动ST2</p>
+<pre><code>sudo ln -s /usr/lib/sublime_text_2/sublime_text /usr/bin/sublime
+</code></pre><p>4.创建可使用的应用程序图标（可以放在Launcher下）</p>
+<pre><code>sudo sublime /usr/share/applications/sublime.desktop
+</code></pre><p>5.配置sublime.desktop文件</p>
+<pre><code>[Desktop Entry]
+Version=1.0
+Name=Sublime Text 2
+# Only KDE 4 seems to use GenericName, so we reuse the KDE strings.
+# From Ubuntu&apos;s language-pack-kde-XX-base packages, version 9.04-20090413.
+GenericName=Text Editor
+
+Exec=sublime
+Terminal=false
+Icon=/usr/lib/sublime_text_2/Icon/48x48/sublime_text.png
+Type=Application
+Categories=TextEditor;IDE;Development
+X-Ayatana-Desktop-Shortcuts=NewWindow
+
+[NewWindow Shortcut Group]
+Name=New Window
+Exec=sublime -n
+TargetEnvironment=Unity
+</code></pre><p>###安装ST2 packpage control</p>
+<p>=&gt; 按Ctrl+`调出console  </p>
+<p>=&gt; 粘贴以下代码到底部命令行并回车：  </p>
+<pre><code>import urllib2,os;pf=&apos;Package Control.sublime-package&apos;;ipp=sublime.installed_packages_path();
+os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),&apos;wb&apos;).write(urllib2.
+urlopen(&apos;http://sublime.wbond.net/&apos;+pf.replace(&apos; &apos;,&apos;%20&apos;)).read())
+</code></pre><p>=&gt; 重启Sublime Text 2</p>
+<p>如果在Perferences-&gt;package settings中看到package control这一项，则安装成功或者<code>Ctrl+Shift+p</code>调出的面板中搜索<code>install package</code>如果存在，则代表安装成功。</p>
+<p>至此，ST2的安装已全部完成，下面我们要安装业务中所需要的插件。</p>
+<p>###安装sublime Text 插件的一般步骤：</p>
+<p>=&gt; 按住Ctrl+Shift+P<br>=&gt; 在出现的输入框中输入install<br>=&gt; 选择package control:install packpage回车<br>=&gt; 输入需安装的插件名称进行检索<br>=&gt; 选中对应的插件，按回车<br>=&gt; 稍定一会儿，插件正在安装中，注意右下角状态栏会显示正在连接的提示文字  </p>
+<p>###前端Team需安装的插件</p>
+<ul>
+<li><p>安装compass插件</p>
+</li>
+<li><p>安装sass插件</p>
+</li>
+<li><p>安装zendcoding插件</p>
+</li>
+<li><p>安装YUI Compressor代码压缩插件</p>
+</li>
+<li><p>安装Sublime codeIntel代码提示插件</p>
+</li>
+<li><p>安装Alignment代码等号对齐插件</p>
+</li>
+<li><p>安装GBK Encoding Support插件</p>
+</li>
+<li><p>安装DocBlockr插件</p>
+</li>
+<li><p>安装BracketHighlighter插件</p>
+</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2013-04-10</span><i class="fa fa-tag"></i><a class="tag" href="/blog/categories/前端开发/" title="前端开发">前端开发 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://www.hankewins.com/blog/how-to-install-sublime-text-2/,Hankewins's Blog,前端开发环境（ST2）搭建过程,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/blog/getting-start-nodejs/" title="Node学习历险记（1）— 扬帆启航">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/blog/frontend-tandard/" title="h5前端开发规范文档">下一篇</a></li></ul></div></div></div></div></div><script src="/blog/js/jquery.js"></script><script src="/blog/js/jquery-migrate-1.2.1.min.js"></script><script src="/blog/js/jquery.appear.js"></script></body></html>

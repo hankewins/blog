@@ -6,7 +6,7 @@ comments: true
 categories: [前端开发]
 ---
 
-![伦敦塔楼](../assets/pic/36c76caeee6e4ca01d7c6eb51a2cdd92.jpg)
+![伦敦塔楼](/assets/pic/36c76caeee6e4ca01d7c6eb51a2cdd92.jpg)
 
 中国是桥的故乡，自古就有“桥的国度”之称,发展于隋,兴盛于宋。遍布在神州大地的桥、编织成四通八达的交通网络，连接着祖国的四面八方。
 
@@ -22,7 +22,7 @@ categories: [前端开发]
 
 近期正在参与某移动端项目的开发，其实现方案是采用Hybrid App（混合应用）开发模式，H5页面端一方面通过jsBridge与Native webview进行交互实现对应的交互效果，另一方面通过Node中间层与Backend进行交互实现对数据接口的对接（如下图所示）。***在这个过程中我们把其中的一段交互方式进行抽象化且将联结着“桥头”（Native App）和“桥尾”（H5 Webpage）的中介（jsBridge）称为“桥”。***
 
-![架构图](../assets/pic/sample.ppt.001.png)
+![架构图](/assets/pic/sample.ppt.001.png)
 
 在计算机世界里有很多这样的中介构建了无数座虚拟的“桥”，编织成四通八达的计算机信息网络，连接着各项应用程序。
 

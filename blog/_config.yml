@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://hankewins.com/blog
+url: http://www.hankewins.com/blog
 root: /blog
 permalink: /:title/
 permalink_defaults:
@@ -86,3 +86,9 @@ deploy:
   type: git
   repo: https://github.com/hankewins/blog
   branch: gh-pages
+
+# hexo-admin authentification
+admin:
+  username: hankewins
+  password_hash: $2a$10$G4Izka7ouHqOvy7UFjQutuAQMW7lv8owaEAOJn..HdF0hp0i7CJMm
+  secret: 1234567890abc

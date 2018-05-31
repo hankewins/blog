@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="hankewins,me@hankewins.com"><title>解决node app.js关闭后显示端口占用 · Hankewins's Blog</title><meta name="description" content="在学习Node开发过程中，经常运行程序（node app.js）时提示端口被占用，信息如下：
+node app.js
+events.js:141
+      throw er; // Unhandled &amp;apos;error&amp;apos; event
+      ^
+Error: listen EA"><meta name="keywords" content="Web,HTML5,CSS3,Nodejs,git,php"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/blog/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/blog/css/style.css"><link rel="stylesheet" href="/blog/css/blog_basic.css"><link rel="stylesheet" href="/blog/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/blog/images/avatar.jpg" style="width:127px;"><h3 title=""><a href="/">Hankewins's Blog</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="http://weibo.com/hankewins"><i class="fa fa-weibo"></i></a></li><li><a href="http://facebook.com/hankewins"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/hankewins"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/blog/archives">归档</a></li><li><a href="/blog/about">关于</a></li><li><a href="/blog/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/blog/images/avatar.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>解决node app.js关闭后显示端口占用</a></h3></div><div class="post-content"><p>在学习Node开发过程中，经常运行程序（node app.js）时提示端口被占用，信息如下：</p>
+<pre><code>node app.js
+events.js:141
+      throw er; // Unhandled &apos;error&apos; event
+      ^
+Error: listen EADDRINUSE :::3000
+    at Object.exports._errnoException (util.js:870:11)
+    at exports._exceptionWithHostPort (util.js:893:20)
+    at Server._listen2 (net.js:1236:14)
+    at listen (net.js:1272:10)
+    at Server.listen (net.js:1368:5)
+    at EventEmitter.listen (/Users/hankewins/www/node_pro/node-test/node_modules/express/lib/application.js:617:24)
+    at Object.&lt;anonymous&gt; (/Users/hankewins/www/node_pro/node-test/app.js:15:5)
+    at Module._compile (module.js:409:26)
+    at Object.Module._extensions..js (module.js:416:10)
+    at Module.load (module.js:343:32)
+</code></pre><p>此类情况在主要出现在*unix系统下，程序退出时对应的进程未结束，请注意以下几种操作下：</p>
+<ul>
+<li>mac OS X系统下应该是control + c 而不是 control + z</li>
+<li>Linux系统下应该是ctrl + c</li>
+</ul>
+<p>通过以下命令查看端口被占用的使用：</p>
+<pre><code>lsof -i:3000
+</code></pre><p>解决端口被占用可以通过以下几种方式：</p>
+<ul>
+<li>调用系统自带的进行管理窗口，结束node进程</li>
+<li>sudo kill pid 通过lsof -i:3000查看</li>
+<li>sudo pkill -9 node 结束所有node进程</li>
+<li>sudo npm install -g funckyou，执行funck node可以结束node进程</li>
+</ul>
+<p>针对node app.js单一进程管理，重复操作比较繁琐，这里推荐几个node进程管理器：</p>
+<ul>
+<li><a href="http://strong-pm.io/" target="_blank" rel="noopener">StrongLoop Process Manager</a></li>
+<li><a href="https://github.com/Unitech/pm2" target="_blank" rel="noopener">PM2</a></li>
+<li><a href="https://github.com/foreverjs/forever" target="_blank" rel="noopener">Forever</a></li>
+<li><a href="https://github.com/petruisfan/node-supervisor" target="_blank" rel="noopener">Supervisor</a></li>
+</ul>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://cnodejs.org/topic/560a5fdb148959375f34ffda" target="_blank" rel="noopener">cnode上node运行时端口被占用问题的讨论</a></li>
+<li><a href="http://expressjs.com/en/advanced/pm.html" target="_blank" rel="noopener">Express官方推荐的进程管理器</a></li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2016-03-08</span><i class="fa fa-tag"></i><a class="tag" href="/blog/blog/categories/Node开发/" title="Node开发">Node开发 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://www.hankewins.com/blogblog/node-error-listen-eaddrinuse/,Hankewins's Blog,解决node app.js关闭后显示端口占用,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/blog/blog/frontend-sublime-text3-plugins/" title="前端开发工具之Sublime Text的常用插件">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/blog/blog/window-onscroll-nothing-to-run/" title="Javascript给window.onscroll事件不执行">下一篇</a></li></ul></div></div></div></div></div><script src="/blog/js/jquery.js"></script><script src="/blog/js/jquery-migrate-1.2.1.min.js"></script><script src="/blog/js/jquery.appear.js"></script></body></html>

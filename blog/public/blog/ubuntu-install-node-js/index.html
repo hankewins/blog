@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="hankewins,me@hankewins.com"><title>Ubuntu 12.0.4下安装Nodejs · Hankewins's Blog</title><meta name="description" content="###准备工作
+sudo apt-get install g++ curl libssl-dev apache2-utils
+###安装方式（一）：git clone
+sudo apt-get install git-core
+git clone git://github.com/ry/node.g"><meta name="keywords" content="Web,HTML5,CSS3,Nodejs,git,php"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/avatar.jpg" style="width:127px;"><h3 title=""><a href="/">Hankewins's Blog</a></h3><div class="description"><p>成功者不是比你聪明,只是在最短的时间采取最大的行动.——陈安之</p></div></div></div><ul class="social-links"><li><a href="http://weibo.com/hankewins"><i class="fa fa-weibo"></i></a></li><li><a href="http://facebook.com/hankewins"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/hankewins"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/blog/archives">归档</a></li><li><a href="/blog/about">关于</a></li><li><a href="/blog/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/avatar.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Ubuntu 12.0.4下安装Nodejs</a></h3></div><div class="post-content"><p>###准备工作</p>
+<pre><code>sudo apt-get install g++ curl libssl-dev apache2-utils
+</code></pre><p>###安装方式（一）：git clone</p>
+<pre><code>sudo apt-get install git-core
+git clone git://github.com/ry/node.git
+</code></pre><p>###安装方式（二）： 源码安装</p>
+<pre><code>wget http://nodejs.org/dist/v0.10.13/node-v0.10.13-linux-x64.tar.gz
+mv node-v0.10.13-linux-x64.tar.gz node-linux-x64.tar.gz
+tar -zxvf node-linux-x64.tar.gz
+</code></pre><p>###编译和安装Node</p>
+<pre><code>cd your-node-current-folder
+./configure
+make
+sudo make install
+</code></pre><p>###查看是否安装成功</p>
+<pre><code>node -v OR node -version //查看Node.js当前的版本
+</code></pre><p>###Node运行hello world</p>
+<p>在主文件夹创建hello.js,编辑以下文本：</p>
+<pre><code>var http = require(&apos;http&apos;);  
+http.createServer(function(req, res){  
+res.writeHead(200, {&apos;Content-Type&apos;: &apos;text/plain&apos;});  
+res.end(&apos;Hello world!&apos;);  
+}).listen(3000,&apos;127.0.0.1&apos;);  
+console.log(&apos;Server running at http://127.0.0.1:3000/&apos;)
+</code></pre><p>###在命令行中运行</p>
+<pre><code>node hello.js
+</code></pre><p>打开浏览器，输入<a href="http://127.0.0.1:3000/，可以看到屏幕上显示&quot;Hello" target="_blank" rel="noopener">http://127.0.0.1:3000/，可以看到屏幕上显示&quot;Hello</a> world!”。</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2013-07-12</span><i class="fa fa-comment-o"></i><a href="/blog/ubuntu-install-node-js/#comments">评论</a><i class="fa fa-tag"></i><a class="tag" href="/blog/categories/前端开发/" title="前端开发">前端开发 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://www.hankewins.comblog/ubuntu-install-node-js/,Hankewins's Blog,Ubuntu 12.0.4下安装Nodejs,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/blog/javascript-question-collection/" title="前端系列Javascript“小题大做”">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/blog/owner-one-skill-in-it-industy/" title="在IT行业获得成功，你只需一项技能(转载)">下一篇</a></li></ul></div><a id="comments"></a><div class="ds-thread" data-thread-key="blog/ubuntu-install-node-js/" data-title="Ubuntu 12.0.4下安装Nodejs" data-url="http://www.hankewins.com/blog/ubuntu-install-node-js/" data-author-key="1"></div><script>var duoshuoQuery = {short_name:"hankewins"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

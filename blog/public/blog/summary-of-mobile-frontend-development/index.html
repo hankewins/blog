@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="hankewins,me@hankewins.com"><title>移动平台前端开发总结 · Hankewins's Blog</title><meta name="description" content="移动平台前端开发主要是指针智能手机（iphone、android）做站点适配，并非是针对普通手机开发Wap 2.0，所以在阅读本篇文章以前，你需要对webkit内核的浏览器有一定的了解，需要对HTML5和CSS3有一定的了解。
+1、移动前端开发webkit内核中的一些私有的meta标签
+=&amp;gt; "><meta name="keywords" content="Web,HTML5,CSS3,Nodejs,git,php"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/avatar.jpg" style="width:127px;"><h3 title=""><a href="/">Hankewins's Blog</a></h3><div class="description"><p>成功者不是比你聪明,只是在最短的时间采取最大的行动.——陈安之</p></div></div></div><ul class="social-links"><li><a href="http://weibo.com/hankewins"><i class="fa fa-weibo"></i></a></li><li><a href="http://facebook.com/hankewins"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/hankewins"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/blog/archives">归档</a></li><li><a href="/blog/about">关于</a></li><li><a href="/blog/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/avatar.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>移动平台前端开发总结</a></h3></div><div class="post-content"><p>移动平台前端开发主要是指针智能手机（iphone、android）做站点适配，并非是针对普通手机开发Wap 2.0，所以在阅读本篇文章以前，你需要对webkit内核的浏览器有一定的了解，需要对HTML5和CSS3有一定的了解。</p>
+<p>1、移动前端开发webkit内核中的一些私有的meta标签</p>
+<p>=&gt; 强制让文档的宽度与设备的宽度保持1:1，并且文档最大的宽度比例是1.0，且不允许用户点击屏幕放大浏览；</p>
+<p>=&gt; Iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览</p>
+<p>=&gt; Iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览</p>
+<p>=&gt; Iphone设备中的safari私有meta标签，它表示：</p>
+<p>=&gt; 告诉设备忽略将页面中的数字识别为电话号码</p>
+<p>=&gt; 告诉设备忽略将页面中的电子邮箱</p>
+<p>(IOS) (Android)</p>
+<p>=&gt; 说明： 这个link就是设置web app的放置主屏幕上icon文件路径。图片尺寸可以设定为5757（px）或者Retina可以定为114114（px），ipad尺寸为72*72（px）</p>
+<p>注：红色部分为H5模板页面通用设置项。</p>
+<p>2、如何去除IOS和Android中的输入URL的控件条</p>
+<p>=&gt; setTimeout(scrollTo,0,0,10); 请注意，这句代码必须放在window.onload里才能够正常的工作，而且你的当前文档的内容高度必须是高于窗口的高度时，这句代码才能有效的执行。</p>
+<p>3、如何关闭IOS中键盘自动大写</p>
+<p>=&gt; 我们知道在iOS中，当虚拟键盘弹出时，默认情况下键盘是开启首字母大写的功能的，根据某些业务场景，可能我们需要关闭这个功能，移动版本webkit为input元素提供了autocapitalize属性，通过指定autocapitalize=”off”来关闭键盘默认首字母大写。</p>
+<p>4、IOS中如何彻底禁止用户在新窗口打开页面</p>
+<p>=&gt; 有时我们可能需要禁止用户在新窗口打开页面，我们可以使用a标签的target=”_self“来指定用户在新窗口打开，或者target属性保持空，但是你会发现iOS的用户在这个链接的上方长按3秒钟后，iOS会弹出一个列表按钮，用户通过这些按钮仍然可以在新窗口打开页面，这样的话，开发者指定的target属性就失效了，但是可以通过指定当前元素的-webkit-touch-callout样式属性为none来禁止iOS弹出这些按钮。这个技巧仅适用iOS对于Android平台则无效。</p>
+<p>5、IOS中如何禁止用户保存图片＼复制图片</p>
+<p>=&gt; 我们可以为一个img标签指定-webkit-touch-callout为none也会禁止设备弹出列表按钮，这样用户就无法保存＼复制你的图片了。</p>
+<p>6、IOS中如何禁止用户选中文字(Android同样有效)</p>
+<p>=&gt; 我们通过指定文字标签的-webkit-user-select属性为none便可以禁止iOS用户选中文字。</p>
+<p>7、学会使用webkit-box</p>
+<p>8、如何解决android平台中页面无法自适应</p>
+<p>=&gt; 虽然你的html和css都是完全自适应的，但有一天如果你发现你的页面在android中显示的并不是自适应的时候，首先请你确认你的head标签中是否包含以下meta标签：</p>
+<p>如果有的话，那请你再仔细的看清楚有没有这个属性的值width=device-width，如果没有请立即加上吧！</p>
+<p>9、如何解决iOS 4.3版本中safari对页面中5位数字的自动识别和自动添加样式</p>
+<p>=&gt; iOS4.3版本，升级后对safari造成了一个bug：即使你添加了如下的meta标签，safari仍然会对页面中的5位连续的数字进行自动识别，并且将其重新渲染样式，也就是说你的css对该标签是无效的。</p>
+<p>如下改写：</p>
+<p>12345.00元</p>
+<p>10、如何解决Android 2.0以下平台中圆角的问题</p>
+<p>=&gt; 考虑到border-radius的兼容性问题，使用如下方式：</p>
+<p>定义4个圆角 border:1px solid #F8F8F8; -webkit-border-radius:5px;</p>
+<p>定义部分圆角 border:1px solid #F8F8F8; -webkit-border-radius:5px; -webkit-border-top-left-raduis:0; -webkit-border-bottom-left-radius:0;</p>
+<p>11、如何解决Android浏览器中webapp中圆角后存在背景色的问题（针对特定生产商的Android浏览器）</p>
+<p>=&gt; 可以通过设置父层与子层元素都具有相同圆角，并设置父层元素的背景后与底色一致。</p>
+<p>12、如何解决移动开发中字体适配问题</p>
+<p>=&gt; 我们推荐采用CSS3,新的长度单位REM(REM是相对长度单位。相对于根元素(即html元素)font-size计算值的倍数)。</p>
+<p>/<em> </em> 1rem=20px for 320px(中低端分辨率). <em> 1rem=22.5px for 360px(高端分辨率). </em>/</p>
+<p>html{font-size:20px; -webkit-text-size-adjust:none;} @media all and (min-width:359px){.uc-hack{font-size:22.5px;}} @media all and (min-width:359px) and (-webkit-min-device-pixel-ratio:1.5){html{font-size:22.5px;}}</p>
+<p>（持续更新……）</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2013-10-14</span><i class="fa fa-comment-o"></i><a href="/blog/summary-of-mobile-frontend-development/#comments">评论</a><i class="fa fa-tag"></i><a class="tag" href="/blog/categories/工作与生活/" title="工作与生活">工作与生活 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://www.hankewins.comblog/summary-of-mobile-frontend-development/,Hankewins's Blog,移动平台前端开发总结,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/blog/web-rebuild-party/" title="蜕变·WebRebuild 2013 前端年度交流盛会邀请">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/blog/work-in-gionee-for-one-year/" title="总结在金立工作的一年">下一篇</a></li></ul></div><a id="comments"></a><div class="ds-thread" data-thread-key="blog/summary-of-mobile-frontend-development/" data-title="移动平台前端开发总结" data-url="http://www.hankewins.com/blog/summary-of-mobile-frontend-development/" data-author-key="1"></div><script>var duoshuoQuery = {short_name:"hankewins"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

@@ -12,19 +12,19 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.hankewins.com/blog
-root: /blog
-permalink: /:title/
+url: http://www.hankewins.com
+root: /
+permalink: blog/:title/
 permalink_defaults:
 
 # Directory
 source_dir: source
-public_dir: public
-tag_dir: tags
-archive_dir: archives
-category_dir: categories
-code_dir: downloads/code
-i18n_dir: :lang
+public_dir: public/
+tag_dir: blog/tags
+archive_dir: blog/archives
+category_dir: blog/categories
+code_dir: blog/downloads/code
+i18n_dir: blog/:lang
 skip_render:
 
 # Writing
@@ -89,6 +89,6 @@ deploy:
 
 # hexo-admin authentification
 admin:
-  username: hankewins
+  username: admin
   password_hash: $2a$10$G4Izka7ouHqOvy7UFjQutuAQMW7lv8owaEAOJn..HdF0hp0i7CJMm
   secret: 1234567890abc

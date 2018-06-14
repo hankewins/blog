@@ -1,0 +1,5 @@
+{
+   "src_dir"            :   "./themes/anatole/source/uploads/blog/images",
+   "bucket"             :   "blog",
+   "up_host"            :   "http://up-z2.qiniup.com"
+}

@@ -34,6 +34,11 @@
   word-break: break-all;
 }
 
+#SOHUCS {
+  margin: 0 30px !important;
+  width: auto !important;
+}
+
 #ds-thread,#disqus_thread,#cloud-tie-wrapper {
   margin: 0 30px!important
 }

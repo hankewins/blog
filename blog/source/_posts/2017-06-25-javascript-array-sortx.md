@@ -13,7 +13,7 @@ categories: [前端开发]
 给定一个只包含大写字母和数字且无重复元素的混合数组，按照以下要求排序
 
 1. 字母按在字母表中的位置和数字从小到大排序
-2. 字母优化排在前面
+2. 字母优先排在前面
 
 例如：
 
@@ -44,7 +44,7 @@ var sortX = function(arr){
 		chars.push($1);
 		return index + 1;
 	}).split(',').sort(function(a,b){return a > b;});
-	// 将字母替换排序后的数组中
+	// 将字母替换到排序后的数组中
 	for(var i = 0; i < chars.length; i++){
 		var index = letters.indexOf(chars[i]) + 1;
 		var start = sorts.indexOf(index.toString());

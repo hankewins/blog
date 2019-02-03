@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="hankewins,me@hankewins.com"><title>前端进阶系列（第1期）：理解JavaScript数据类型 · Hankewins's Blog</title><meta name="description" content="写在前面前端进阶系列本着“好好干前端”的心态，一步一个脚印认真练好前端的基本功，为在前端的发展道路上做好铺垫。
+本周正式开始前端进阶的第1期，本周的主题是理解JavaScript数据类型。
+数据类型最新的 ECMAScript 标准定义了7种数据类型，主要分为两大类基本类型和引用类型。
+基本类型基本"><meta name="keywords" content="Web,HTML5,CSS3,Nodejs,git,php"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/baidu.js"></script></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/uploads/blog/images/avatar02.jpg" style="width:127px; border-radius: 30px;"><h3 title=""><a href="/">Hankewins's Blog</a></h3><div class="description"><p>爱折腾的天秤座，前端工程师，摄影爱好者！</p></div></div></div><ul class="social-links"><li><a href="http://weibo.com/hankewins"><i class="fa fa-weibo"></i></a></li><li><a href="http://facebook.com/hankewins"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/hankewins"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/blog/archives">归档</a></li><li><a href="/blog/about">关于</a></li><li><a href="/blog/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/uploads/blog/images/avatar02.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>前端进阶系列（第1期）：理解JavaScript数据类型</a></h3></div><div class="post-content"><h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>前端进阶系列本着“好好干前端”的心态，一步一个脚印认真练好前端的基本功，为在前端的发展道路上做好铺垫。</p>
+<p>本周正式开始前端进阶的第1期，本周的主题是<code>理解JavaScript数据类型</code>。</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>最新的 ECMAScript 标准定义了7种数据类型，主要分为两大类<code>基本类型</code>和<code>引用类型</code>。</p>
+<h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><p><code>基本类型</code>有时也被称为<code>值类型</code>或<code>原始类型</code>。其中包括6种数据类型，分别是：<code>字符串类型（String）</code>、<code>数字类型（Number）</code>、<code>布尔类型（Boolean）</code>、<code>对空类型（Null）</code>、<code>未定义类型（Undefined）</code>、<code>符号类型（Symbol）</code>。</p>
+<p><strong>字符串类型</strong></p>
+<p>JavaScript的字符串类型用于表示文本数据。它是一组16位的无符号整数值的“元素”。在字符串中的每个元素占据了字符串的位置。第一个元素的索引为0，下一个是索引1，依此类推。字符串的长度是它的元素的数量。</p>
+<p><strong>数字类型</strong></p>
+<p>根据 ECMAScript 标准，JavaScript 中只有一种数字类型：基于 IEEE 754 标准的双精度 64 位二进制格式的值（-(263 -1) 到 263 -1）。它并没有为整数给出一种特定的类型。除了能够表示浮点数外，还有一些带符号的值：+Infinity，-Infinity 和 NaN (非数值，Not-a-Number)。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span>; <span class="comment">// 正整数</span></span><br><span class="line"><span class="number">-123</span>; <span class="comment">// 负整数</span></span><br><span class="line"><span class="number">520.1314</span>; <span class="comment">// 浮点数</span></span><br><span class="line"><span class="number">0</span>; <span class="comment">// 零</span></span><br><span class="line"><span class="literal">Infinity</span>; <span class="comment">// 正无穷</span></span><br><span class="line">-<span class="literal">Infinity</span>; <span class="comment">// 负无穷</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">Infinity</span>; <span class="comment">// number</span></span><br></pre></td></tr></table></figure>
+<p><strong>布尔类型</strong></p>
+<p>布尔表示一个逻辑实体，可以有两个值：true 和 false。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> &gt; <span class="number">1</span>; <span class="comment">// true</span></span><br><span class="line">[] == []; <span class="comment">// false </span></span><br><span class="line">[] == ![]; <span class="comment">// true 这是为什么？</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">// true</span></span><br><span class="line"><span class="string">'10'</span> &gt; <span class="string">'3'</span>; <span class="comment">// flase 这个啥？</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span>; <span class="comment">// boolean</span></span><br></pre></td></tr></table></figure>
+<p><strong>Null 类型</strong></p>
+<p>Null 类型只有一个值： null。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> === <span class="literal">null</span>; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span>; <span class="comment">// object 为什么不是 null呢？</span></span><br></pre></td></tr></table></figure>
+<p><strong>Undefined 类型</strong></p>
+<p>一个没有被赋值的变量会有个默认值 undefined。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a; <span class="comment">// 我申明我是一个变量 a</span></span><br><span class="line"><span class="keyword">typeof</span> a; <span class="comment">// undefined 申明未赋值</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">undefined</span>; <span class="comment">// true</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="number">0</span>; <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">null</span>; <span class="comment">// true</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="string">''</span>; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p><strong>符号类型</strong></p>
+<p>符号(Symbols)是ECMAScript 第6版新定义的。符号类型是唯一的并且是不可修改的, 并且也可以用来作为Object的key的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> symbol1 = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">let</span> symbol2 = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> symbol1; <span class="comment">// symbol</span></span><br><span class="line"><span class="keyword">typeof</span> symbol2; <span class="comment">// symbol</span></span><br><span class="line"></span><br><span class="line">symbol1 == symbol2; <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line">obj.symbol1 = <span class="string">'hello'</span>;</span><br><span class="line">obj[symbol1] = <span class="string">'world'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj.symbol1 + <span class="string">' '</span> + obj[symbol1]); <span class="comment">// hello world</span></span><br></pre></td></tr></table></figure>
+<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><p><code>引用类型</code>主是指<code>Object类型</code>。</p>
+<p><strong>Object 对象</strong></p>
+<p>在计算机科学中, 对象是指内存中的可以被 <code>标识符</code>引用的一块区域。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;&#125;; <span class="comment">// 对象字面量</span></span><br><span class="line"><span class="keyword">let</span> obj2 = <span class="keyword">new</span> <span class="built_in">Object</span>(); <span class="comment">// 实例化一个对象</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> obj1; <span class="comment">// object</span></span><br><span class="line"><span class="keyword">typeof</span> obj2; <span class="comment">// object</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person = &#123; <span class="attr">author</span>: &#123;<span class="attr">name</span>: <span class="string">"布一"</span>, <span class="string">"wechat"</span>: <span class="string">"Hankewins"</span>&#125;, <span class="number">1</span>: <span class="string">"No.1"</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person.author.name); <span class="comment">// 布一</span></span><br><span class="line"><span class="built_in">console</span>.log(person.author.wechat); <span class="comment">// Hankewins</span></span><br><span class="line"><span class="built_in">console</span>.log(person[<span class="number">1</span>]); <span class="comment">// No.1</span></span><br></pre></td></tr></table></figure>
+<h3 id="类型对比"><a href="#类型对比" class="headerlink" title="类型对比"></a>类型对比</h3><p>我们都知道JavaScript中有两大数据类型：<code>基本类型</code>和<code>引用类型</code>，其中<code>基本类型</code>主要是把值存储在<code>栈内存</code>中，而<code>引用类型</code>却是把地址存储在<code>栈内存</code>中，把值存储在<code>堆内存</code>中，然后将<code>栈内存</code>中存储的地址指向<code>堆内存</code>中存储的值。</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>数据结构</th>
+<th>存储位置 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本类型</td>
+<td>数字、字符串、布尔、Null、Undefined、Symbol</td>
+<td>栈</td>
+</tr>
+<tr>
+<td>引用类型</td>
+<td>数组、对象、函数</td>
+<td>栈、堆</td>
+</tr>
+</tbody>
+</table>
+<h4 id="什么是堆栈？"><a href="#什么是堆栈？" class="headerlink" title="什么是堆栈？"></a>什么是堆栈？</h4><p>堆栈是两种数据结构，是一种数据项按序排列的数据结构，只能在一端进行插入和删除操作。堆为队列优先，先进先出（FIFO）。栈为先进后出（FILO）。</p>
+<h4 id="堆和栈有啥区别？"><a href="#堆和栈有啥区别？" class="headerlink" title="堆和栈有啥区别？"></a>堆和栈有啥区别？</h4><ol>
+<li>空间分配</li>
+</ol>
+<ul>
+<li>堆（操作系统）：一般由程序员分配释放，若程序员不释放，程序结束时可能由OS回收，分配方式类似于链表。PS：java中都是系统GC，程序员无法进行GC。</li>
+<li>栈（操作系统）：由操作系统自动分配释放，存放函数的参数值，局部变量值等。操作方式与数据结构中的栈相类似。</li>
+</ul>
+<ol start="2">
+<li>缓存方式</li>
+</ol>
+<ul>
+<li>堆：使用二级缓存，生命周期与虚拟机的GC算法有关（并不是引用为空就立即被GC），调用速度相对较低。</li>
+<li>栈：使用一级缓存，被调用时通常处于存储空间中，调用后被立即释放。</li>
+</ul>
+<ol start="3">
+<li>数据结构</li>
+</ol>
+<ul>
+<li>堆（数据结构）：类似于树结构，可以类比于堆排序</li>
+<li>栈（数据结构）：先进后出（FILO）</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本篇文章内容主要告诉我们以下几个基本知识点：</p>
+<ol>
+<li>JavaScript中有7种数据类型，分为两大类：<code>基本类型</code>和<code>引用类型</code>。</li>
+<li>堆和栈的概念和区别，以及JavaScript中两大数据类型的存储方式。</li>
+<li>抛出了一些数据类型转换时遇到的“奇葩”问题。</li>
+</ol>
+<p>针对第3点我们将在下一章节中重点讲解。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures" target="_blank" rel="noopener">JavaScript 数据类型和数据结构
+</a></li>
+<li><a href="https://www.jianshu.com/p/4cc13cb3aa9a" target="_blank" rel="noopener">操作系统中堆（heap）与栈（stack）的区别</a></li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2019-01-27</span><i class="fa fa-tag"></i><a class="tag" href="/blog/categories/前端进阶/" title="前端进阶">前端进阶 </a><a class="tag" href="/blog/tags/javascript/" title="javascript">javascript </a><a class="tag" href="/blog/tags/数据类型/" title="数据类型">数据类型 </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://www.hankewins.comblog/前端进阶系列（第1期）：理解JavaScript数据类型/,Hankewins's Blog,前端进阶系列（第1期）：理解JavaScript数据类型,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/blog/前端进阶系列（第2期）：深入理解JavaScript数据类型转换/" title="前端进阶系列（第2期）：深入理解JavaScript数据类型转换">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/blog/let-s-do-the-frontend/" title="“好好干前端” -- 公众号正式运营 ">下一篇</a></li></ul></div><div id="SOHUCS" style="margin:0 30px; width: auto;"></div><script>(function(){ 
+var appid = 'cytFOBPDX'; 
+var conf = 'prod_f57c6d80c4216457518b2c26f9bf4cbf'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();
+
+</script></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
